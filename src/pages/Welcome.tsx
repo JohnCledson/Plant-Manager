@@ -1,5 +1,12 @@
 import React from 'react'
-import { Image, Text, View, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native'
+import {
+  Image,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView
+} from 'react-native'
 
 import wateringImg from '../assets/watering.png'
 import colors from '../styles/colors'
