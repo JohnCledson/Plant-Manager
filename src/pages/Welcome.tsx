@@ -2,28 +2,50 @@ import React from 'react'
 import {
   Image,
   Text,
-  View,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView
+  SafeAreaView,
+  Dimensions,
+  View
 } from 'react-native'
+import { Feather } from '@expo/vector-icons'
 
 import wateringImg from '../assets/watering.png'
 import colors from '../styles/colors'
+import fonts from '../styles/fonts'
+import { useNavigation } from '@react-navigation/core'
 
 export default function Welcome(){
+  const navigation = useNavigation()
   return (
     <SafeAreaView style={styled.container} >
-      <Text style={styled.title} >
-        Gerencie{'\n'}suas plantas de{'\n'}forma fácil
-      </Text>
-      <Image source={wateringImg} style={styled.image} />
-      <Text style={styled.subTitle} >
-        Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você sempre que precisar.
-      </Text>
-      <TouchableOpacity style={styled.button} >
-        <Text style={styled.buttonText} >></Text>
-      </TouchableOpacity>
+      <View style={styled.wrapper} >
+        <Text style={styled.title} >
+          Gerencie{'\n'}suas plantas de{'\n'}forma fácil
+        </Text>
+
+        <Image
+          source={wateringImg}
+          style={styled.image}
+          resizeMode={'contain'}
+        />
+
+        <Text style={styled.subTitle} >
+          Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você sempre que precisar.
+        </Text>
+
+        <TouchableOpacity
+          style={styled.button}
+          onPress={() => navigation.navigate('User')}
+        >
+
+          <Feather
+            name='chevron-right'
+            style={styled.buttonIcon}
+          />
+
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   )
 }
@@ -31,25 +53,31 @@ export default function Welcome(){
 const styled = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  wrapper: {
+    flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 20
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     color: colors.heading,
-    marginTop: 38
+    marginTop: 38,
+    fontFamily: fonts.heading,
+    lineHeight: 34
   },
   image: {
-    width: 292,
-    height: 284
+    height: Dimensions.get('window').width * 0.7
   },
   subTitle: {
     textAlign: 'center',
     fontSize: 18,
     paddingHorizontal: 20,
-    color: colors.heading
+    color: colors.heading,
+    fontFamily: fonts.text
   },
   button: {
     backgroundColor: colors.green,
@@ -57,10 +85,10 @@ const styled = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 16,
     height: 56,
-    width: 56
+    width: 56,
   },
-  buttonText: {
+  buttonIcon: {
+    fontSize: 32,
     color: colors.white,
-    fontSize: 24
   }
 })
